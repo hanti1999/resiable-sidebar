@@ -31,6 +31,10 @@ const SizeBar: React.FC<SizeBarProps> = ({ mainContent, sizebarContent }) => {
     [isResizing]
   );
 
+  const toggleSidebar = () => {
+    sidebarRef.current?.classList.toggle('hidden');
+  };
+
   useEffect(() => {
     window.addEventListener('mousemove', resize);
     window.addEventListener('mouseup', stopResizing);
@@ -41,18 +45,25 @@ const SizeBar: React.FC<SizeBarProps> = ({ mainContent, sizebarContent }) => {
   }, [resize, stopResizing]);
 
   return (
-    <div className='app-container'>
-      <div
-        ref={sidebarRef}
-        className='app-sidebar'
-        style={{ width: sidebarWidth }}
-        onMouseDown={(e) => e.preventDefault()}
-      >
-        <div className='app-sidebar-content'>{sizebarContent}</div>
-        <div className='app-sidebar-resizer' onMouseDown={startResizing} />
+    <>
+      <button className=' border rounded px-2 py-1' onClick={toggleSidebar}>
+        Toggle sidebar
+      </button>
+
+      <div className='app-container'>
+        <div
+          ref={sidebarRef}
+          className='app-sidebar hidden'
+          style={{ width: sidebarWidth }}
+          onMouseDown={(e) => e.preventDefault()}
+        >
+          <div className='app-sidebar-content'>{sizebarContent}</div>
+          <div className='app-sidebar-resizer' onMouseDown={startResizing} />
+        </div>
+
+        <div className='app-frame'>{mainContent}</div>
       </div>
-      <div className='app-frame'>{mainContent}</div>
-    </div>
+    </>
   );
 };
 

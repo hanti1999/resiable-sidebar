@@ -6,7 +6,9 @@ import ResizableSidebar from './utils/ResizableSidebar';
 function App() {
   return (
     <>
-      <ResizableSidebar mainContent={<Home />} sizebarContent={<Sidebar />} />
+      <div className='container mx-auto'>
+        <ResizableSidebar mainContent={<Home />} sizebarContent={<Sidebar />} />
+      </div>
     </>
   );
 }
