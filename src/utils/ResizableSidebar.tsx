@@ -11,7 +11,7 @@ const SizeBar: React.FC<SizeBarProps> = ({ mainContent, sizebarContent }) => {
   const [isResizing, setIsResizing] = useState(false);
   const [sidebarWidth, setSidebarWidth] = useState(268);
 
-  const startResizing = useCallback((mouseDownEvent: MouseEvent) => {
+  const startResizing = useCallback(() => {
     setIsResizing(true);
   }, []);
 
